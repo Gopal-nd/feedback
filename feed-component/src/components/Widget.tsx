@@ -5,7 +5,7 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
 import { MessageCircle } from 'lucide-react';
-
+import tailwindStyles from "../index.css?inline";
 const Widget = () => {
   const [showForm, setShowForm] = useState(false);
   const [rating, setRating] = useState(0);
@@ -24,27 +24,31 @@ const handleSubmit = (event: React.FormEvent) => {
 };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end space-y-2">
-
+    <>
+    <style>{tailwindStyles}</style>
+    <div className=" widget fixed bottom-4  right-4 z-50 flex flex-col items-end space-y-2">
       <div
-        className={`w-80 rounded-xl shadow-xl p-4 space-y-4 bg-white transition-all duration-300 ease-in-out transform ${
+      style={{border : "1px solid black" , borderRadius: "5px"}}
+        className={`w-80 rounded-xl shadow-xl p-4 space-y-4   transition-all duration-300 ease-in-out transform ${
           showForm
             ? "opacity-100 translate-y-0 scale-100"
             : "opacity-0 translate-y-2 scale-95 pointer-events-none"
         }`}
       >
-        <h3 className="text-lg font-semibold">Send us your feedback</h3>
+    <style>{tailwindStyles}</style>
+
+        <h3 className="text-lg font-semibold text-center">Send us your feedback</h3>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
-            <Input type="text" name="name" id="name" placeholder="John Doe" required />
+            <Label className="widget "  htmlFor="name">Name</Label>
+            <Input className="widget border" type="text" name="name" id="name" placeholder="John Doe" required style={{boxShadow:"100px"}} />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input type="email" name="email" id="email" placeholder="jondoe@me.com"  required/>
+            <Label className="widget" htmlFor="email">Email</Label>
+            <Input className="widget border" type="email" name="email" id="email" placeholder="jondoe@me.com"  required/>
           </div>
           <div className="space-y-2">
-            <Label>Rating</Label>
+            <Label className="widget">Rating</Label>
             <div className="flex space-x-1">
               {Array.from({ length: 5 }).map((_, index) => {
                 const current = index + 1;
@@ -61,8 +65,8 @@ const handleSubmit = (event: React.FormEvent) => {
             </div>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="feedback">Feedback</Label>
-            <Textarea name="feedback" id="feedback" rows={4} placeholder="Write your feedback here" />
+            <Label className="widget" htmlFor="feedback">Feedback</Label>
+            <Textarea className="widget border" name="feedback" id="feedback" rows={4} placeholder="Write your feedback here" />
           </div>
           <Button type="submit" className="w-full">
             Submit
@@ -72,12 +76,14 @@ const handleSubmit = (event: React.FormEvent) => {
 
 
       <Button
-        className="rounded-full shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-105 active:scale-95"
+        className="widget rounded-full shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl hover:scale-105 active:scale-95"
         onClick={() => setShowForm(!showForm)}
       >
        <MessageCircle className="mr- h-10 w-10"  /> Feedback
       </Button>
     </div>
+    </>
+
   );
 };
 
