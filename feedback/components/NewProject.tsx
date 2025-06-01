@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Plus } from "lucide-react";
 import SubmitButton from "./SubmitButton"
+import { createProject } from "@/actions/createProject"
 
 const NewProjBtn = () => {
   return (
@@ -29,7 +30,12 @@ const NewProjBtn = () => {
             Create a new project to get started
           </DialogDescription>
         </DialogHeader>
-        <form className="flex gap-4 flex-col" action={() => {}}>
+        <form
+          className="flex gap-4 flex-col"
+          action={async (formData) => {
+            await createProject(formData);
+          }}
+        >
           <div className="grid sm:grid-cols-2 gap-4">
             <div className="flex flex-col gap-2">
               <Label htmlFor="name">Name</Label>
