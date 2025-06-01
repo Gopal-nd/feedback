@@ -41,11 +41,11 @@ const handleSubmit = (event: React.FormEvent) => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <Label className="widget "  htmlFor="name">Name</Label>
-            <Input className="widget border" type="text" name="name" id="name" placeholder="John Doe" required style={{boxShadow:"100px"}} />
+            <Input className=" border" type="text" name="name" id="name" placeholder="John Doe" required style={{boxShadow:"100px"}} />
           </div>
           <div className="space-y-2">
             <Label className="widget" htmlFor="email">Email</Label>
-            <Input className="widget border" type="email" name="email" id="email" placeholder="jondoe@me.com"  required/>
+            <Input className=" border" type="email" name="email" id="email" placeholder="jondoe@me.com"  required/>
           </div>
           <div className="space-y-2">
             <Label className="widget">Rating</Label>
@@ -66,7 +66,7 @@ const handleSubmit = (event: React.FormEvent) => {
           </div>
           <div className="space-y-2">
             <Label className="widget" htmlFor="feedback">Feedback</Label>
-            <Textarea className="widget border" name="feedback" id="feedback" rows={4} placeholder="Write your feedback here" />
+            <Textarea className=" border" name="feedback" id="feedback" rows={4} placeholder="Write your feedback here" />
           </div>
           <Button type="submit" className="w-full">
             Submit
