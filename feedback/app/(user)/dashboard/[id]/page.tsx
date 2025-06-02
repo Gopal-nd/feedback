@@ -4,11 +4,13 @@ import { projects as dbProjects } from "@/db/schema"
 import Link from "next/link"
 import { Globe, ChevronLeft, Code } from "lucide-react"
 import Table from "@/components/Tabel"
+import { auth } from "@clerk/nextjs/server"
 
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params
   if (!id) return <div className="text-red-500 dark:text-red-400">Invalid Project ID</div>
+const {userId} = await auth()
 
   const projects = await db.query.projects.findMany({
     where: eq(dbProjects.id, Number.parseInt(id)),
@@ -16,8 +18,10 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
       feedbacks: true,
     },
   })
-
   const project = projects[0]
+if(project.userId !== userId) return <div className="text-red-500 dark:text-red-400">You are not authorized to view this project</div>
+  project.userId
+
   if (!project) return <div className="text-red-500 dark:text-red-400">Project not found</div>
 
   return (
