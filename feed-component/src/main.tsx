@@ -5,6 +5,6 @@ import Widget from './components/Widget.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Widget />
+    <Widget projectId="1"/>
   </StrictMode>,
 )

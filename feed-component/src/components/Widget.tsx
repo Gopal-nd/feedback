@@ -6,22 +6,29 @@ import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
 import { MessageCircle } from 'lucide-react';
 import tailwindStyles from "../index.css?inline";
-const Widget = () => {
+import  supabase from "../supabaseClient";
+
+const Widget = ({projectId}: {projectId: any}) => {
+  const [submitted, setSubmitted] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
 
-const handleSubmit = (event: React.FormEvent) => {
-  event.preventDefault();
-  const formData = new FormData(event.currentTarget as HTMLFormElement);
-  const data = {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    rating,
-    feedback: formData.get("feedback"),
+const handleSubmit =async (e: React.FormEvent) => {
+    e.preventDefault();
+     const formData = new FormData(e.currentTarget as HTMLFormElement);
+     const data = {
+       p_project_id: projectId,
+       p_user_name: formData.get("name"),
+       p_user_email: formData.get("email"),
+       p_message: formData.get("feedback"),
+       p_rating: Number(rating),
+      };
+      console.log(data)
+    const { data: returnedData } = await supabase.rpc("add_feedback", data);
+    setSubmitted(true);
+    console.log(returnedData);
   };
-  console.log(data);
-};
 
   return (
     <>
@@ -36,6 +43,15 @@ const handleSubmit = (event: React.FormEvent) => {
         }`}
       >
     <style>{tailwindStyles}</style>
+       {submitted ? (
+              <div>
+                <h3 className="text-lg font-bold">Thank you for your feedback!</h3>
+                <p className="mt-4">
+                  We appreciate your feedback. It helps us improve our product and provide better
+                  service to our customers.
+                </p>
+              </div>
+            ) : (<>
 
         <h3 className="text-lg font-semibold text-center">Send us your feedback</h3>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -72,6 +88,8 @@ const handleSubmit = (event: React.FormEvent) => {
             Submit
           </Button>
         </form>
+        </>
+        )}
       </div>
 
 

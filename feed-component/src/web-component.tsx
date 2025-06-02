@@ -18,7 +18,7 @@ class WidgetWebComponent extends HTMLElement {
   connectedCallback() {
     const props = this.getPropsFromAttributes();
     const root = ReactDom.createRoot(this.shadowRoot as ShadowRoot); // eg. id='root'
-    root.render(<Widget {...props} />);
+    root.render(<Widget projectId={props.projectId} />);
   }
 
   // input : <widget-web-component user-name="JohnDoe" data-id="123" />
