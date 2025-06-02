@@ -16,11 +16,11 @@ const Page = () => {
       <p className="text-lg text-secondary-foreground">Embed the code in your site</p>
       <div className="bg-blue-950 p-6 rounded-md mt-6 relative">
         <code className=" text-white">
-          {`<feedback-widge project-id="${id}"></feedback-widge>`}
+          {`<feedback-widget project-id="${id}"></feedback-widget>`}
           <br />
           {`<script src="${process.env.NEXT_PUBLIC_WIDGET_URL}/widget.umd.js"></script>`}
         </code>
-        <CopyBtn text={`<feedback-widge project-id="${id}"></feedback-widge>\n<script src="${process.env.NEXT_PUBLIC_WIDGET_URL}/widget.umd.js"></script>`} />
+        <CopyBtn text={`<feedback-widget project-id="${id}"></feedback-widget>\n<script src="${process.env.NEXT_PUBLIC_WIDGET_URL}/widget.umd.js"></script>`} />
       </div>
     </div>
   );
