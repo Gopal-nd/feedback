@@ -6,22 +6,19 @@ import { Globe, ChevronLeft, Code } from 'lucide-react';
 import Table from "@/components/Tabel";
 
 
-const page = async ({ params }: {
-  params: {
-    id: string
-  }
-}) => {
-  if (!params.id) return (<div>Invalid Project ID</div>);
+const page = async ({ params }: { params: Promise<{ id: string }> }) => {
+    const { id } = await params;
+  if (!id) return (<div>Invalid Project ID</div>);
 
   const projects = await db.query.projects.findMany({
-    where: (eq(dbProjects.id, parseInt(params.id))),
+    where: (eq(dbProjects.id, parseInt(id))),
     with: {
       feedbacks: true
     }
   });
 
   const project = projects[0];
-  console.log(project.feedbacks)
+  
 
   return (
     <div>
@@ -34,8 +31,19 @@ const page = async ({ params }: {
           <h2 className="text-primary-background text-xl mb-2">{project.description}</h2>
         </div>
         <div className="flex flex-col">
-          {project.url ? <Link href={project.url} className="underline text-indigo-700 flex items-center"><Globe className="h-5 w-5 mr-1" /><span className="text-lg">Visit site</span></Link> : null}
-          <Link href={`/projects/${params.id}/instructions`} className="underline text-indigo-700 flex items-center mt-2">
+        {project.url ? (
+  <a
+    href={project.url.startsWith('http') ? project.url : `https://${project.url}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="underline text-indigo-700 flex items-center"
+  >
+    <Globe className="h-5 w-5 mr-1" />
+    <span className="text-lg">Visit site</span>
+  </a>
+) : null}
+
+          <Link href={`/dashboard/${id}/instructions`} className="underline text-indigo-700 flex items-center mt-2">
             <Code className="h-5 w-5 mr-1" /><span className="text-lg">Embed Code</span></Link>
         </div>
       </div>

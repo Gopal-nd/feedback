@@ -25,7 +25,7 @@ const UserProjectsList = (props: Props) => {
                 <CardDescription>{project.description}</CardDescription>
               </CardHeader>
               <CardFooter>
-                <Link href={`/projects/${project.id}`}>
+                <Link href={`/dashboard/${project.id}`}>
                   <Button>View Project</Button>
                 </Link>
               </CardFooter>

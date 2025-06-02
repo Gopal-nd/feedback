@@ -8,6 +8,7 @@ import {
 } from '@clerk/nextjs';
 import { Button } from './ui/button';
 import Link from 'next/link';
+import { ModeToggle } from './ModelToggel';
 
 const NavBar = () => {
   return (
@@ -16,6 +17,7 @@ const NavBar = () => {
       <h1 className="text-2xl font-bold">Feedback</h1>
       </Link>
       <header className="flex justify-end items-center gap-2">
+        <ModeToggle/>
         <SignedOut>
           <SignInButton>
             <Button variant="default">Sign In</Button>

@@ -6,6 +6,7 @@ import {
   ClerkProvider,
 } from '@clerk/nextjs'
 import NavBar from "@/components/NavBar";
+import { ThemeProvider } from "@/components/theme-provider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -30,9 +31,16 @@ export default function RootLayout({
  <ClerkProvider>
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-         <NavBar/>
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+          <NavBar/>
+            {children}
              <Toaster />
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

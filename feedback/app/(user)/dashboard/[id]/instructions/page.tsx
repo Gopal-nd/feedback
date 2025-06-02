@@ -8,7 +8,7 @@ const Page = () => {
   const id = params.id
  
   if (!id) return (<div>Invalid Project ID</div>);
-  if (!process.env.NEXT_PUBLIC_URL) return (<div>Missing WIDGET_URL</div>);
+  if (!process.env.NEXT_PUBLIC_WIDGET_URL) return (<div>Missing WIDGET_URL</div>);
 
   return (
     <div>
@@ -18,9 +18,9 @@ const Page = () => {
         <code className=" text-white">
           {`<feedback-widge project-id="${id}"></feedback-widge>`}
           <br />
-          {`<script src="${process.env.NEXT_PUBLIC_URL}/widget.umd.js"></script>`}
+          {`<script src="${process.env.NEXT_PUBLIC_WIDGET_URL}/widget.umd.js"></script>`}
         </code>
-        <CopyBtn text={`<feedback-widge project-id="${id}"></feedback-widge>\n<script src="${process.env.NEXT_PUBLIC_URL}/widget.umd.js"></script>`} />
+        <CopyBtn text={`<feedback-widge project-id="${id}"></feedback-widge>\n<script src="${process.env.NEXT_PUBLIC_WIDGET_URL}/widget.umd.js"></script>`} />
       </div>
     </div>
   );
