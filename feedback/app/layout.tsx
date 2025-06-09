@@ -44,6 +44,7 @@ export default function RootLayout({
           {/* @ts-ignore */}
         <feedback-widget project-id="4"></feedback-widget> 
         </body>
+
 <script src="https://feedback-widget.opentoolbox.site/widget.umd.js"></script>
       </html>
     </ClerkProvider>
